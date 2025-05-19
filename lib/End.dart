@@ -59,7 +59,7 @@ class FooterWithImageSection extends StatelessWidget {
 
                     // Company Links
                     linkColumn("About us", [
-                      "Contact us",
+                      "Contact me",
                       "Pricing",
                       "KYC & AML policy",
                       "Service accessibility",

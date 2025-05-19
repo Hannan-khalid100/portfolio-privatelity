@@ -42,7 +42,7 @@ class _LaunchYourCompanySectionState extends State<LaunchYourCompanySection> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Launch your company ",
+                  "Improve your company ",
                   style: GoogleFonts.abhayaLibre(
                     fontSize: 45,
                     fontWeight: FontWeight.bold,
