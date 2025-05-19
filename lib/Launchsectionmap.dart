@@ -50,7 +50,7 @@ class _LaunchYourCompanySectionState extends State<LaunchYourCompanySection> {
                   ),
                 ),
                 Text(
-                  "from → anywhere",
+                  " anywhere in world",
                   style: GoogleFonts.abhayaLibre(
                     fontSize: 45,
                     fontWeight: FontWeight.bold,
