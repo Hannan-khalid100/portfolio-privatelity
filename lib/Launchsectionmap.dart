@@ -55,7 +55,7 @@ class _LaunchYourCompanySectionState extends State<LaunchYourCompanySection> {
                     fontSize: 45,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF5B3DF5),
-                  ),
+                  ),                                                                     /**/
                 ),
                 SizedBox(height: 15),
                 Text(

@@ -12,7 +12,195 @@ import 'package:port2/tustedSection.dart';
 import 'PricingCard.dart';
 import 'TransparentPricingSection.dart';
 import 'bouneses Section.dart';
+import 'package:flutter/material.dart';
 
+class PageWithCustomDrawer extends StatelessWidget {
+  const PageWithCustomDrawer({super.key});
+
+  Widget _buildDrawerItem({
+    required BuildContext context,
+    required IconData icon,
+    required String text,
+    required VoidCallback onTap,
+   tileColor = const Color(0xFF003366),
+    Color textColor = Colors.white,
+    Color iconColor = const Color(0xFF003366),
+  }) {
+    return ListTile(
+      tileColor: tileColor,
+      leading: Icon(icon, color: iconColor, size: 24),
+      title: Text(
+        text,
+        style: GoogleFonts.abhayaLibre(
+          fontSize: 16,
+          color: textColor,
+          fontWeight: FontWeight.w900,
+        ),
+      ),
+      onTap: () {
+        Navigator.pop(context); // Close the drawer first
+        onTap(); // Then execute the provided onTap action
+      },
+      contentPadding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 6.0),
+      dense: true,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title:  Text(
+          'Click Agent Pro',style: GoogleFonts.abhayaLibre(
+          fontWeight: FontWeight.w900,
+          fontSize: 40,
+        )// Or whatever title you prefer
+          // style: GoogleFonts.poppins(fontWeight: FontWeight.bold, color: Colors.black), // Example style
+        ),
+        // backgroundColor: const Color(0xFF90EE90), // Example background color
+        // elevation: 0,
+        // iconTheme: const IconThemeData(color: Colors.black), // Drawer icon color
+      ),
+      drawer: Drawer(
+        child: Container(
+          color:  Color(0xFF003366), // Overall drawer background
+          child: Column(
+            children: <Widget>[
+              // User Profile Section
+              Container(
+                width: double.infinity,
+                padding:  EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0, bottom: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      width: 78,
+                      height: 78,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/pic15.jpg'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Click Agent Pro',
+                      style: GoogleFonts.abhayaLibre(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Divider(height: 1, thickness: 1, color: Colors.grey.shade300),
+
+              // Navigation Items
+              _buildDrawerItem(
+                context: context,
+                icon: Icons.home_work,iconColor: Colors.white,
+                text: 'Home',
+                onTap: () {
+                  // Action for Home
+                  print('Home tapped');
+                },
+              ),
+              _buildDrawerItem(
+                context: context,
+                icon: Icons.headset_mic,iconColor: Colors.white,
+                text: 'Help',
+                onTap: () {
+                  // Action for Help
+                  print('Help tapped');
+                },
+              ),
+              _buildDrawerItem(
+                context: context,
+                icon: Icons.help_center,
+                text: 'FeedBack',iconColor: Colors.white,
+                tileColor:  Color(0xFFEDEFF2),
+                onTap: () {
+                  // Action for FeedBack
+                  print('FeedBack tapped');
+                },
+              ),
+
+              // Invite Friend Button
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: Material(
+                    color: const Color(0xFFDCEEFF),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context); // Close the drawer
+                        // Action for Invite Friend
+                        print('Invite Friend tapped');
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 12.0),
+                        child: Row(
+                          children: <Widget>[
+                            const Icon(Icons.group_add, color: Color(0xFF0056b3), size: 24),
+                            const SizedBox(width: 20),
+                             Text(
+                              'Invite Friend',
+                              style: GoogleFonts.abhayaLibre(
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Divider(height: 1, thickness: 1, color: Colors.grey.shade300),
+
+              const Spacer(), // Pushes Sign Out to the bottom
+
+              // Sign Out
+              Divider(height: 1, thickness: 1, color: Colors.grey.shade300),
+              ListTile(
+                title:  Text(
+                  'Sign Out',
+                  style: GoogleFonts.abhayaLibre(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                trailing: const Icon(Icons.power_settings_new, color: Colors.redAccent),
+                onTap: () {
+                  Navigator.pop(context); // Close the drawer
+                  // Action for Sign Out
+                  print('Sign Out tapped');
+                },
+                contentPadding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+              ),
+              const SizedBox(height: 10),
+            ],
+          ),
+        ),
+      ),
+      body: HomePage()
+    );
+
+  }
+}
+
+// To use this page in your app's main.dart or router:
+// MaterialApp(
+//   home: PageWithCustomDrawer(),
+// );
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
